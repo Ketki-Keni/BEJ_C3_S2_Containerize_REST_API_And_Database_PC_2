@@ -1,0 +1,35 @@
+============================
+Dockerize a MySQL database
+============================
+
+--Pull the MySQL image from Docker hub
+docker pull mysql:latest
+
+docker images
+
+--Run the MySQL container
+docker network create mynetwork
+
+docker network ls
+
+docker run -it --network mynetwork --name sqlservice -e MYSQL_ROOT_PASSWORD=mypassword -d mysql
+
+docker ps
+
+--Execute the MySQL terminal
+docker exec -it sqlservice bash
+
+mysql -u root -p
+
+--Create a database to store user details
+create database user_db;
+ 
+use user_db;
+
+--Create a table called Users
+create table Users(username varchar(30), address varchar(30), phone_number varchar(30), email varchar(30));
+
+--Insert username, address, phone number, and email into the Users table.
+insert into Users values ("Tom", "Main Dave Street", 8452037892, "tom@gmail.com");
+
+select * from Users;
